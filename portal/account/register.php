@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Portal Registration Wizard
@@ -469,7 +470,7 @@ function callServer(action, value, value2, last, first) {
                 </div>
             </div>
         </form>
-<!-- Profile Form -->
+<!-- Profile Form 
         <form class="form-inline" id="profileForm" role="form" action="account.php" method="post">
             <div class="row setup-content" id="step-2" style="display: none">
                 <div class="col-md-9 col-md-offset-2 text-center">
@@ -486,7 +487,7 @@ function callServer(action, value, value2, last, first) {
                 </div>
             </div>
         </form>
-<!-- Insurance Form -->
+<!-- Insurance Form 
         <form class="form-inline" id="insuranceForm" role="form" action="" method="post">
             <div class="row setup-content" id="step-3" style="display: none">
                 <div class="col-xs-6 col-md-offset-3 text-center">
@@ -535,7 +536,7 @@ function callServer(action, value, value2, last, first) {
                     </fieldset>
                 </div>
             </div>
-        </form>
+        </form>-->
         <!-- End Insurance. Next what we've been striving towards..the end-->
         <div class="row setup-content" id="step-4" style="display: none">
             <div class="col-xs-6 col-md-offset-3 text-center">
