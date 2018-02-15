@@ -375,14 +375,14 @@ function callServer(action, value, value2, last, first) {
                     <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
                     <p><?php echo xlt('Get Started') ?></p>
                 </div>
-                <div class="stepwiz-step">
+                <!--<div class="stepwiz-step">
                     <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
                     <p><?php echo xlt('Profile') ?></p>
                 </div>
                 <div class="stepwiz-step">
                     <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
                     <p><?php echo xlt('Insurance') ?></p>
-                </div>
+                </div>-->
                 <div class="stepwiz-step">
                     <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
                     <p><?php echo xlt('Register') ?></p>
