@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Portal Registration Wizard
@@ -5,7 +6,7 @@
  * @package OpenEMR
  * @link    http://www.open-emr.org
  * @author  Jerry Padgett <sjpadgett@gmail.com>
- * @copyright Copyright (c) 2017 Jerry Padgett <sjpadgett@gmail.com>
+ * @copyright Copyright (c) 2017-2018 Jerry Padgett <sjpadgett@gmail.com>
  * @license https://www.gnu.org/licenses/agpl-3.0.en.html GNU Affero General Public License 3
  */
 
@@ -86,8 +87,7 @@ if ($GLOBALS['language_menu_login']) {
 <link href="<?php echo $GLOBALS['assets_static_relative']; ?>/bootstrap-3-3-4/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="./../assets/css/register.css" rel="stylesheet" type="text/css" />
 
-<!-- This is trick. eModal breaks on jquery 3 so load another compatable version. In this case (missing function) load order doesn't matter but other cases may -->
-<script src="<?php echo $GLOBALS['assets_static_relative']; ?>/jquery-min-1-11-3/index.js" type="text/javascript"></script>
+<script src="<?php echo $GLOBALS['assets_static_relative']; ?>/jquery-min-3-1-1/index.js" type="text/javascript"></script>
 
 <script src="<?php echo $GLOBALS['assets_static_relative']; ?>/bootstrap-3-3-4/dist/js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['assets_static_relative']; ?>/jquery-datetimepicker-2-5-4/build/jquery.datetimepicker.full.min.js"></script>
@@ -254,7 +254,15 @@ $(document).ready(function () {
         callServer('cleanup');
     });
 
-});
+    $('#inscompany').on('change', function () {
+        if ($('#inscompany').val().toUpperCase() === 'SELF') {
+            $("#insuranceForm input").removeAttr("required");
+            let message = "<?php echo xls('You have chosen to be self insured or currently do not have insurance. Click next to continue registration.'); ?>";
+            alert(message);
+        }
+    });
+
+}); // ready end
 
 function doCredentials(pid) {
     callServer('do_signup', pid);
@@ -314,7 +322,7 @@ function callServer(action, value, value2, last, first) {
             'action': action
         };
     }
-    // The magic that is jquery ajax.l
+    // The magic that is jquery ajax.
     $.ajax({
         type : 'GET',
         url : 'account.php',
@@ -340,26 +348,26 @@ function callServer(action, value, value2, last, first) {
         }
         else if (action == 'do_signup') {
             if (rtn == "") {
-                var message = "<?php echo xls('Unable to either create credentials or send email.'); ?>";
+                let message = "<?php echo xls('Unable to either create credentials or send email.'); ?>";
                 alert(message);
                 return false;
             }
             // For production. Here we're finished so do signup closing alert and then cleanup.
             callServer('notify_admin', newPid, provider); // pnote notify to selected provider
             // alert below for ease of testing.
-            // alert(rtn); // sync alert.. rtn holds username and password for testing.
+            //alert(rtn); // sync alert.. rtn holds username and password for testing.
 
-            var message = "<?php echo xls("Your new credentials have been sent. Check your email inbox and also possibly your spam folder. Once you log into your patient portal feel free to make an appointment or send us a secure message. We look forward to seeing you soon."); ?>"
+            let message = "<?php echo xls("Your new credentials have been sent. Check your email inbox and also possibly your spam folder. Once you log into your patient portal feel free to make an appointment or send us a secure message. We look forward to seeing you soon."); ?>"
             eModal.alert(message); // This is an async call. The modal close event exits us to portal landing page after cleanup.
         }
     }).fail(function (err) {
-        var message = "<?php echo xls('Something went wrong.') ?>";
+        let message = "<?php echo xls('Something went wrong.') ?>";
         alert(message);
     });
 }
 </script>
 </head>
-<body>
+<body class="skin-blue">
     <div class="container">
         <div class="stepwiz col-md-offset-3">
             <div class="stepwiz-row setup-panel">
@@ -367,16 +375,16 @@ function callServer(action, value, value2, last, first) {
                     <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
                     <p><?php echo xlt('Get Started') ?></p>
                 </div>
-                <div class="stepwiz-step">
+                <!--<div class="stepwiz-step">
                     <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                    <p><?php echo xlt('Profile') ?></p>
+                    <p></p>
                 </div>
                 <div class="stepwiz-step">
                     <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                    <p><?php echo xlt('Insurance') ?></p>
-                </div>
+                    <p></p>
+                </div>-->
                 <div class="stepwiz-step">
-                    <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
+                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
                     <p><?php echo xlt('Register') ?></p>
                 </div>
             </div>
@@ -452,7 +460,7 @@ function callServer(action, value, value2, last, first) {
                                     <label class="control-label" for="email"><?php echo xlt('Enter E-Mail Address')?></label>
                                     <div class="controls inline-inputs">
                                         <input id="emailInput" type="email" class="form-control" style="width: 100%" required
-                                            placeholder="<?php echo xla('Enter email address to receive registration info.'); ?>" maxlength="100">
+                                            placeholder="<?php echo xla('Enter email address to receive registration.'); ?>" maxlength="100">
                                     </div>
                                 </div>
                             </div>
@@ -462,73 +470,73 @@ function callServer(action, value, value2, last, first) {
                 </div>
             </div>
         </form>
-<!-- Profile Form
+<!-- Profile Form 
         <form class="form-inline" id="profileForm" role="form" action="account.php" method="post">
             <div class="row setup-content" id="step-2" style="display: none">
                 <div class="col-md-9 col-md-offset-2 text-center">
                     <fieldset>
-                        <legend class='bg-primary'><?php echo xlt('Profile') ?></legend>
+                        <legend class='bg-primary'></legend>
                         <div class="well">
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item" src="../patient/patientdata?pid=0&register=true" id="profileFrame" name="demo"></iframe>
                             </div>
                         </div>
-                        <button class="btn btn-primary prevBtn btn-sm pull-left" type="button"><?php echo xlt('Previous') ?></button>
-                        <button class="btn btn-primary btn-sm pull-right" type="button" id="profileNext"><?php echo xlt('Next') ?></button>
+                        <button class="btn btn-primary prevBtn btn-sm pull-left" type="button"></button>
+                        <button class="btn btn-primary btn-sm pull-right" type="button" id="profileNext"></button>
                     </fieldset>
                 </div>
             </div>
         </form>
-<!-- Insurance Form
+<!-- Insurance Form 
         <form class="form-inline" id="insuranceForm" role="form" action="" method="post">
             <div class="row setup-content" id="step-3" style="display: none">
                 <div class="col-xs-6 col-md-offset-3 text-center">
                     <fieldset>
-                        <legend class='bg-primary'><?php echo xlt('Insurance') ?></legend>
+                        <legend class='bg-primary'></legend>
                         <div class="well">
                             <div class="form-group inline">
-                                <label class="control-label" for="provider"><?php echo xlt('Insurance Company')?></label>
+                                <label class="control-label" for="provider"></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control" name="provider" required placeholder="<?php echo xla('Insurance Company'); ?>">
+                                    <input type="text" class="form-control" name="provider" id="inscompany" required placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Plan Name')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control" name="plan_name" required placeholder="<?php echo xla('Required'); ?>">
+                                    <input type="text" class="form-control" name="plan_name" required placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Policy Number')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control" name="policy_number" required placeholder="<?php echo xla('Required'); ?>">
+                                    <input type="text" class="form-control" name="policy_number" required placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Group Number')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control" name="group_number" required placeholder="<?php echo xla('Required'); ?>">
+                                    <input type="text" class="form-control" name="group_number" required placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Policy Begin Date')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control datepicker" name="date" placeholder="<?php echo xla('Policy effective date'); ?>">
+                                    <input type="text" class="form-control datepicker" name="date" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Co-Payment')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="number" class="form-control" name="copay" placeholder="<?php echo xla('Plan copay if known'); ?>">
+                                    <input type="number" class="form-control" name="copay" placeholder="">
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary prevBtn btn-sm pull-left" type="button"><?php echo xlt('Previous') ?></button>
-                        <button class="btn btn-primary nextBtn btn-sm pull-right" type="button"><?php echo xlt('Next') ?></button>
+                        <button class="btn btn-primary prevBtn btn-sm pull-left" type="button"></button>
+                        <button class="btn btn-primary nextBtn btn-sm pull-right" type="button"></button>
                     </fieldset>
                 </div>
             </div>
-        </form>
+        </form>-->
         <!-- End Insurance. Next what we've been striving towards..the end-->
         <div class="row setup-content" id="step-4" style="display: none">
             <div class="col-xs-6 col-md-offset-3 text-center">
