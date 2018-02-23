@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Portal Registration Wizard
@@ -374,16 +375,16 @@ function callServer(action, value, value2, last, first) {
                     <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
                     <p><?php echo xlt('Get Started') ?></p>
                 </div>
-                <div class="stepwiz-step">
+                <!--<div class="stepwiz-step">
                     <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                    <p><?php echo xlt('Profile') ?></p>
+                    <p></p>
                 </div>
                 <div class="stepwiz-step">
                     <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                    <p><?php echo xlt('Insurance') ?></p>
-                </div>
+                    <p></p>
+                </div>-->
                 <div class="stepwiz-step">
-                    <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
+                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
                     <p><?php echo xlt('Register') ?></p>
                 </div>
             </div>
@@ -469,73 +470,73 @@ function callServer(action, value, value2, last, first) {
                 </div>
             </div>
         </form>
-<!-- Profile Form -->
+<!-- Profile Form 
         <form class="form-inline" id="profileForm" role="form" action="account.php" method="post">
             <div class="row setup-content" id="step-2" style="display: none">
                 <div class="col-md-9 col-md-offset-2 text-center">
                     <fieldset>
-                        <legend class='bg-primary'><?php echo xlt('Profile') ?></legend>
+                        <legend class='bg-primary'></legend>
                         <div class="well">
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item" src="../patient/patientdata?pid=0&register=true" id="profileFrame" name="demo"></iframe>
                             </div>
                         </div>
-                        <button class="btn btn-primary prevBtn btn-sm pull-left" type="button"><?php echo xlt('Previous') ?></button>
-                        <button class="btn btn-primary btn-sm pull-right" type="button" id="profileNext"><?php echo xlt('Next') ?></button>
+                        <button class="btn btn-primary prevBtn btn-sm pull-left" type="button"></button>
+                        <button class="btn btn-primary btn-sm pull-right" type="button" id="profileNext"></button>
                     </fieldset>
                 </div>
             </div>
         </form>
-<!-- Insurance Form -->
+<!-- Insurance Form 
         <form class="form-inline" id="insuranceForm" role="form" action="" method="post">
             <div class="row setup-content" id="step-3" style="display: none">
                 <div class="col-xs-6 col-md-offset-3 text-center">
                     <fieldset>
-                        <legend class='bg-primary'><?php echo xlt('Insurance') ?></legend>
+                        <legend class='bg-primary'></legend>
                         <div class="well">
                             <div class="form-group inline">
-                                <label class="control-label" for="provider"><?php echo xlt('Insurance Company')?></label>
+                                <label class="control-label" for="provider"></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control" name="provider" id="inscompany" required placeholder="<?php echo xla('Enter Self if None'); ?>">
+                                    <input type="text" class="form-control" name="provider" id="inscompany" required placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Plan Name')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control" name="plan_name" required placeholder="<?php echo xla('Required'); ?>">
+                                    <input type="text" class="form-control" name="plan_name" required placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Policy Number')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control" name="policy_number" required placeholder="<?php echo xla('Required'); ?>">
+                                    <input type="text" class="form-control" name="policy_number" required placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Group Number')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control" name="group_number" required placeholder="<?php echo xla('Required'); ?>">
+                                    <input type="text" class="form-control" name="group_number" required placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Policy Begin Date')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="text" class="form-control datepicker" name="date" placeholder="<?php echo xla('Policy effective date'); ?>">
+                                    <input type="text" class="form-control datepicker" name="date" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group inline">
-                                <label class="control-label" for=""><?php echo xlt('Co-Payment')?></label>
+                                <label class="control-label" for=""></label>
                                 <div class="controls inline-inputs">
-                                    <input type="number" class="form-control" name="copay" placeholder="<?php echo xla('Plan copay if known'); ?>">
+                                    <input type="number" class="form-control" name="copay" placeholder="">
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary prevBtn btn-sm pull-left" type="button"><?php echo xlt('Previous') ?></button>
-                        <button class="btn btn-primary nextBtn btn-sm pull-right" type="button"><?php echo xlt('Next') ?></button>
+                        <button class="btn btn-primary prevBtn btn-sm pull-left" type="button"></button>
+                        <button class="btn btn-primary nextBtn btn-sm pull-right" type="button"></button>
                     </fieldset>
                 </div>
             </div>
-        </form>
+        </form>-->
         <!-- End Insurance. Next what we've been striving towards..the end-->
         <div class="row setup-content" id="step-4" style="display: none">
             <div class="col-xs-6 col-md-offset-3 text-center">

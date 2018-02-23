@@ -33,6 +33,7 @@
 //   English (Indian)               // xl('English (Indian)')
 //   English (Standard)             // xl('English (Standard)')
 //   Estonian                       // xl('Estonian')
+//   Filipino                       // xl('Filipino')
 //   Finnish                        // xl('Finnish')
 //   French                         // xl('French (Standard)')
 //   French                         // xl('French (Canadian)')
@@ -2569,6 +2570,24 @@ $GLOBALS_METADATA = array(
     // Connectors Tab
     //
     'Connectors' => array(
+
+        'fhir_enable' => array(
+            xl('Enable FHIR Provider Client Service'),
+            array(
+                0 => xl('Off: No Service.'),
+                1 => xl('On: HAPI FHIR.'),
+                2 => xl('On: Smart on FHIR.'),
+            ),
+            '0',
+            xl('Enable FHIR Provider Client Service')
+        ),
+
+        'fhir_base_url' => array(
+            xl('FHIR Server Base Address'),
+            'text',
+            'https://hapi.fhir.org/baseDstu3/',
+            xl('Base URL for FHIR Server. Url should end with /')
+        ),
 
         'erx_enable' => array(
             xl('Enable NewCrop eRx Service'),
