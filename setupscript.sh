@@ -27,9 +27,9 @@ sudo mysql -u root < ~/sqlrunner.sql
 sudo service apache2 restart
 sudo service mysql restart
 
-sudo rm -r /var/www/html
+#sudo rm -r /var/www/html
 
-sudo git clone https://github.com/vaibhavgupta3110/openemr -b rel-430 /var/www/html
+sudo git clone https://github.com/vaibhavgupta3110/openemr /var/www/openemr
 
 sudo service apache2 restart
 sudo service mysql restart
@@ -41,14 +41,14 @@ sleep 400
 
 
 sudo chmod 666 \
-/var/www/html/sites/*/sqlconf.php \
-/var/www/html/interface/modules/zend_modules/config/application.config.php
+/var/www/*/sites/*/sqlconf.php \
+/var/www/*/interface/modules/zend_modules/config/application.config.php
 
 sudo chown -R www-data:www-data \
-/var/www/html/sites/*/documents \
-/var/www/html/sites/*/edi \
-/var/www/html/sites/*/era \
-/var/www/html/sites/*/letter_templates \
-/var/www/html/gacl/admin/templates_c \
-/var/www/html/interface/main/calendar/modules/PostCalendar/pntemplates/compiled \
-/var/www/html/interface/main/calendar/modules/PostCalendar/pntemplates/cache
+/var/www/*/sites/*/documents \
+/var/www/*/sites/*/edi \
+/var/www/*/sites/*/era \
+/var/www/*/sites/*/letter_templates \
+/var/www/*/gacl/admin/templates_c \
+/var/www/*/interface/main/calendar/modules/PostCalendar/pntemplates/compiled \
+/var/www/*/interface/main/calendar/modules/PostCalendar/pntemplates/cache
