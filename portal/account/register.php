@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Portal Registration Wizard
@@ -384,7 +383,7 @@ function callServer(action, value, value2, last, first) {
                     <p></p>
                 </div>-->
                 <div class="stepwiz-step">
-                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
+                    <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
                     <p><?php echo xlt('Register') ?></p>
                 </div>
             </div>
@@ -486,9 +485,9 @@ function callServer(action, value, value2, last, first) {
                     </fieldset>
                 </div>
             </div>
-        </form>
-<!-- Insurance Form 
-        <form class="form-inline" id="insuranceForm" role="form" action="" method="post">
+        </form>-->
+ Insurance Form 
+       <!-- <form class="form-inline" id="insuranceForm" role="form" action="" method="post">
             <div class="row setup-content" id="step-3" style="display: none">
                 <div class="col-xs-6 col-md-offset-3 text-center">
                     <fieldset>
@@ -560,3 +559,5 @@ function callServer(action, value, value2, last, first) {
     </div>
 </body>
 </html>
+
+
