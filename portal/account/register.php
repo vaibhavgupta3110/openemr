@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Portal Registration Wizard
@@ -71,6 +70,7 @@ if ($GLOBALS['language_menu_login']) {
         $hiddenLanguageField = "<input type='hidden' name='languageChoice' value='1' />\n";
     }
 } else {
+    $hiddenLanguageField = "<input type='hidden' name='languageChoice' value='" . htmlspecialchars($defaultLangID, ENT_QUOTES) . "' />\n";
     $hiddenLanguageField = "<input type='hidden' name='languageChoice' value='" . htmlspecialchars($defaultLangID, ENT_QUOTES) . "' />\n";
 }
 
@@ -177,7 +177,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#profileNext").click(function () {
+    /*$("#profileNext").click(function () {
         var profile = $("#profileFrame").contents();
         var curStep = $(this).closest(".setup-content"),
         curStepBtn = curStep.attr("id"),
@@ -201,7 +201,7 @@ $(document).ready(function () {
             provider = profile.find('select#providerid').val();
             nextstepwiz.removeAttr('disabled').trigger('click');
         }
-    });
+    });*/
 
     $("#submitPatient").click(function () {
         var profile = $("#profileFrame").contents();
@@ -232,7 +232,7 @@ $(document).ready(function () {
         <?php require($GLOBALS['srcdir'] . '/js/xl/jquery-datetimepicker-2-5-4.js.php'); ?>
      });
 
-    $("#insuranceForm").submit(function (e) {
+   /* $("#insuranceForm").submit(function (e) {
         e.preventDefault();
         var url = "account.php?action=new_insurance&pid=" + newPid;
         $.ajax({
@@ -244,7 +244,7 @@ $(document).ready(function () {
                 return false;
             }
         });
-    });
+    });*/
 
     $('#selLanguage').on('change', function () {
         callServer("set_lang", this.value);
@@ -270,7 +270,7 @@ function doCredentials(pid) {
 
 function checkRegistration(pid) {
     var profile = $("#profileFrame").contents();
-    var curStep = $("#step-2"),
+    var curStep = $("#step-1"),
     curStepBtn = curStep.attr("id"),
     nextstepwiz = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
     curInputs = $("#profileFrame").contents().find("input[type='text'],input[type='email'],select"),
@@ -384,7 +384,7 @@ function callServer(action, value, value2, last, first) {
                     <p></p>
                 </div>-->
                 <div class="stepwiz-step">
-                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
+                    <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"><?php echo xlt('Done') ?></a>
                     <p><?php echo xlt('Register') ?></p>
                 </div>
             </div>
@@ -470,7 +470,7 @@ function callServer(action, value, value2, last, first) {
                 </div>
             </div>
         </form>
-<!-- Profile Form 
+<!-- Profile Form -->
         <form class="form-inline" id="profileForm" role="form" action="account.php" method="post">
             <div class="row setup-content" id="step-2" style="display: none">
                 <div class="col-md-9 col-md-offset-2 text-center">
@@ -487,8 +487,8 @@ function callServer(action, value, value2, last, first) {
                 </div>
             </div>
         </form>
-<!-- Insurance Form 
-        <form class="form-inline" id="insuranceForm" role="form" action="" method="post">
+ <!--Insurance Form -->
+       <!-- <form class="form-inline" id="insuranceForm" role="form" action="" method="post">
             <div class="row setup-content" id="step-3" style="display: none">
                 <div class="col-xs-6 col-md-offset-3 text-center">
                     <fieldset>
@@ -560,3 +560,5 @@ function callServer(action, value, value2, last, first) {
     </div>
 </body>
 </html>
+
+
